@@ -1,0 +1,111 @@
+@mixin breakpoint($name) {
+	@if $name == "phone_small" {
+		@media screen and (min-width: 320px) {
+			@content;
+		}
+	}
+	@else if $name == "phone" {
+		@media screen and (min-width: 480px) {
+			@content;
+		}
+	}
+	@else if $name == "phone_big" {
+		@media screen and (min-width: 640px) {
+			@content;
+		}
+	}
+	@else if $name == "tablet" {
+		@media screen and (min-width: 768px) {
+			@content;
+		}
+	}
+	@else if $name == "tablet_big" {
+		@media screen and (min-width: 980px) {
+			@content;
+		}
+	}
+	@else if $name == "desktop_small" {
+		@media screen and (min-width: 1024px) {
+			@content;
+		}
+	}
+	@else if $name == "desktop" {
+		@media screen and (min-width: 1200px) {
+			@content;
+		}
+	}
+	@else if $name == "desktop_big" {
+		@media screen and (min-width: 1370px) {
+			@content;
+		}
+	}
+	@else {
+		@media screen and (min-width: $name) {
+			@content;
+		}
+	}
+}
+/*
+* Mixin for basic CSS triangles
+*/
+@mixin triangle($direction:up, $color:#000, $size:100px) {
+	@if($direction == up) {
+		border-color: transparent transparent $color;
+		border-style: solid;
+		border-width: 0 $size $size;
+		height: 0;
+		width: 0;
+	}
+	@if($direction == up2) {
+		border-color: transparent transparent $color;
+		border-style: solid;
+		border-width: $size;
+		height: 0;
+		width: 0;
+	}
+	@if($direction == down) {
+		border-color: $color transparent transparent transparent;
+		border-style: solid;
+		border-width: $size;
+		height:0;
+		width:0;
+	}
+	@if($direction == left) {
+		border-color: transparent $color transparent transparent;
+		border-style: solid;
+		border-width: $size $size $size 0;
+		height: 0;
+		width: 0;
+	}
+	@if($direction == right) {
+		border-color: transparent transparent transparent $color;
+		border-style: solid;
+		border-width: $size 0 $size $size;
+		height:0;
+		width:0;
+	}
+	@if($direction == upright) {
+		border-top: $size solid $color;
+		border-right: $size solid transparent;
+		height: 0;
+		width: 0;
+	}
+	@if($direction == upleft) {
+		border-top: $size solid $color;
+		border-left: $size solid transparent;
+		height: 0;
+		width: 0;
+	}
+	@if($direction == downright) {
+		border-bottom: $size solid $color;
+		border-right: $size solid transparent;
+		height: 0;
+		width: 0;
+	}
+	@if($direction == downleft) {
+		border-bottom: $size solid $color;
+		border-left: $size solid transparent;
+		height: 0;
+		width: 0;
+	}
+}

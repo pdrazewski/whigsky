@@ -1,0 +1,7 @@
+.a-typo {
+	font: 400 14px/25px $font-primary;
+	color: $cl-grey3;
+	&.is-primary {
+		font: 400 25px/34px $font-primary;
+	}
+}

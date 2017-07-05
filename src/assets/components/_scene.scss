@@ -1,0 +1,29 @@
+.c-scene {
+	border: 1px solid $cl-greyE;
+	overflow: auto;
+	height: 100%;
+	width: 100%;
+	margin-bottom: 50px;
+	background: url('../static/bg.jpg') repeat;
+	@include breakpoint(phone_big) {
+		top: 0;
+		display: table;
+		margin-bottom: 0;
+		bottom: 45px;
+		left: 0;
+		position: absolute;
+		width: 56%;
+	}
+	@include breakpoint(tablet_big) {
+		width: 74%;
+	}
+	&_cell {
+		display: table-cell;
+		vertical-align: middle;
+	}
+	&_output {		
+		transition: all .2s ease;
+		position: relative;
+		margin: 0 auto;
+	} 
+}

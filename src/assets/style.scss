@@ -1,0 +1,58 @@
+$wrapperWidth: 100%;
+
+// setup, vars & mixins
+@import "./common/_reset";
+@import "./common/_mixins";
+@import "./common/_colors";
+@import "./common/_fonts";
+
+html, body {
+    height:100%;
+}
+
+body {
+	font-size: 16px;
+	font-family: $font-primary;  
+	line-height: 22px; 
+	background: #fff;
+	a { 
+		font-size: 16px; 
+		text-decoration: none;
+	}
+	input[type="text"] {
+		padding: 10px;
+		width: 100%;
+		box-sizing: border-box;
+		border: 1px solid #ddd;
+	}
+	.color-picker-control {
+		box-shadow: none;
+	}
+}
+
+
+
+//atoms
+@import './atoms/_alert';
+@import './atoms/_form';
+@import './atoms/_btn';
+@import './atoms/_typo'; 
+@import './atoms/_loader'; 
+
+//blocks
+@import "./blocks/_mainWrapper";
+@import "./blocks/_footer";
+
+//componenets
+@import "./components/_logo";
+@import "./components/_menu";
+@import "./components/_sort";
+@import "./components/_gallery";
+@import "./components/_ruler";
+@import "./components/_editor";
+@import "./components/_scene";
+
+//plugins
+@import "~vue-range-slider/dist/vue-range-slider.css"; 
+@import "~color-picker/color-picker.css";
+

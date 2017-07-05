@@ -1,0 +1,53 @@
+.a-btn {
+	padding: 12px 25px;
+	font: 500 17px/15px $font-primary;
+	text-align: center;
+	text-transform: uppercase;
+	cursor: pointer;
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	&:hover {
+		text-decoration: none;
+	}
+	&[disabled],
+	&.is-disabled {
+		opacity: .6;
+		pointer-events: none;
+		cursor: default;
+	}
+	&.is-primary {
+		background: $cl-primary;
+		border: none;
+		color: $cl-white; 
+		transition: background .3s;
+		&:hover {
+			background: $cl-secondary;
+		}
+	}
+}
+.c-sort {
+	.a-btn {
+		float: left;
+		padding: 5px 10px;
+		font-size: 12px;
+		margin-right: 5px;
+		margin-bottom: 5px;
+		width: auto;
+		color: $cl-grey3;
+		border: 1px solid $cl-greyE;
+		background: $cl-white;
+		outline: none;
+		&:hover {
+			color: $cl-white;
+			border: 1px solid $cl-secondary;
+		}
+		&.is-active {
+			background: $cl-secondary;
+			color: $cl-white;
+			border: 1px solid $cl-secondary;
+			padding-right: 25px;
+			position: relative;
+		}
+	}
+}

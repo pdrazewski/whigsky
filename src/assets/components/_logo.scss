@@ -1,0 +1,16 @@
+.c-logo {
+	text-align: center;
+	h1 {
+		font-family: $font-primary;
+    a {
+      color: #fff;
+      font-size: 17px;
+      line-height: 64px;
+      text-transform: uppercase;
+      font-weight: 700;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+	}
+}

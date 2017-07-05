@@ -1,0 +1,52 @@
+.c-menu {
+	text-align: center;
+	&_item {
+		font-family: $font-primary;
+		display: inline-block;
+		color: #fff;
+		text-decoration: none;
+		text-transform: uppercase; 
+	}
+	a {
+		font-family: $font-primary;
+		display: block;
+		font-size: 17px; 
+		color: #fff;
+		padding: 10px 50px 10px 30px;
+		text-decoration: none;
+		font-weight: 400;
+		position: relative;
+		&:hover {
+			&:after {
+				content: "";
+				display: block;
+				bottom: -3px;
+				left: 0;
+				right: 0;
+				height: 3px;
+				background: #ff6e00;
+				position: absolute;
+			}
+		}
+		&.router-link-exact-active {
+			&:after {
+				content: "";
+				display: block;
+				bottom: -3px;
+				left: 0;
+				right: 0;
+				height: 3px;
+				background: #ff6e00;
+				position: absolute;
+			}
+		}
+		img {
+			position: absolute;
+			top: 9px;
+			right: 17px;
+		}
+	}
+}
+
+
+

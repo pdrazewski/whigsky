@@ -1,0 +1,13 @@
+.c-ruler {
+	height: 15px;
+	background: url("../static/ruler.jpg") left bottom repeat-x #fff;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 200;
+	display: none;
+	@include breakpoint('phone_big') { 
+		display: block;
+	}
+}

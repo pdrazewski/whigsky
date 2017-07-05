@@ -1,0 +1,17 @@
+.a-alert {
+	padding: 15px;
+	font-size: 14px;
+	line-height: 24px;
+	background: #fff;
+	text-align: center;
+	border: 3px solid #A1CD63;
+	margin-top: 20px;
+	color: #A1CD63;
+	clear: both;
+	overflow: hidden;
+	a {
+		font-size: 14px;
+		line-height: 24px;
+		color: $cl-primary;
+	}
+}

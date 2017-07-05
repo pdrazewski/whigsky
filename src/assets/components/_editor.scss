@@ -1,0 +1,21 @@
+.c-editor {
+	background: $cl-white;
+	clear: both;
+	overflow: hidden;
+	margin-top: 30px;
+	@include breakpoint(phone_big) {
+		position: absolute;
+		top: 15px;
+		padding: 2%;
+		right: 0;
+		margin-top: 0;
+		bottom: 0;
+		z-index: 200;
+		overflow: auto;
+		padding-bottom: 50px;
+		width: 40%;
+	} 
+	@include breakpoint(tablet_big) {
+		width: 22%;
+	}
+}
