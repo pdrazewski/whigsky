@@ -9,10 +9,10 @@ const router = new VueRouter({
 	routes: [
 		{ path: '/', component: index }
 	]
-})
+}) 
 
 //validation
 import Vuelidate from 'vuelidate'
-Vue.use(Vuelidate)
+Vue.use(Vuelidate) 
 
-new Vue({router}).$mount('#app') 
+var vm = new Vue({router}).$mount('#app') 

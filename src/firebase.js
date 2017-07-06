@@ -1,11 +1,11 @@
 import Firebase from 'firebase'
 const configFire = {
-	apiKey: "AIzaSyAk-66Isnz5xv_49-8-69eC43HrFqnLJcs",
-    authDomain: "rects-de9c0.firebaseapp.com",
-    databaseURL: "https://rects-de9c0.firebaseio.com",
-    projectId: "rects-de9c0",
-    storageBucket: "rects-de9c0.appspot.com",
-    messagingSenderId: "537829017166"
+	apiKey: "AIzaSyCAXWFSeQtM_QQARruI2uqGmfWT4y4ViiI",
+    authDomain: "e-components.firebaseapp.com",
+    databaseURL: "https://e-components.firebaseio.com",
+    projectId: "e-components",
+    storageBucket: "",
+    messagingSenderId: "483660337530"
 }
 const app = Firebase.initializeApp(configFire)
 
