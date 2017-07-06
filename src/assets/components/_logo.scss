@@ -1,16 +1,21 @@
-.c-logo {
-	text-align: center;
-	h1 {
-		font-family: $font-primary;
+.m-logo {
+  margin-top: 15px;
+  float: left;
+  h1 {
+    font-family: "Arial";
+    
     a {
       color: #fff;
       font-size: 17px;
-      line-height: 64px;
-      text-transform: uppercase;
       font-weight: 700;
       &:hover {
         text-decoration: none;
       }
+      span {
+        font-family: "Arial";
+        font-size: 30px;
+        font-weight: 400;  
+      }
     }
-	}
+  }
 }

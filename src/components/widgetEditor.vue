@@ -4,14 +4,25 @@
 			<form class="a-form" @submit.prevent="compile">
 				<div class="a-form_row">
 					<label class="a-form_label">Template:</label>
-					<textarea v-model="template" class="a-form_field" type="text" @input="validateTemplate();$v.template.$touch()" style="height: 500px; line-height: 20px;">
+					<textarea v-model="template" class="a-form_field" type="text" @input="validateTemplate();" style="height: 500px; line-height: 20px;">
 					test
 					</textarea>
-					<span class="a-form_error" v-if="!$v.template.required">Field is required</span>
+					<textarea v-model="styles" class="a-form_field" type="text" @input="compileSCSS();" style="height: 500px; line-height: 20px;">
+					test
+					</textarea>
 				</div>
 				<div>
 					<div v-for="(varName, index) in vars">
-						<p>{{compileName(varName)}} <input type="text" v-model="data[compileName(varName)]" /></p>
+						<p>{{varName.data}} {{varName.items}} 
+						Ustawienia pola <br>
+						Typ pola <select>
+						<option>String</option>
+						<option>Number</option>
+						<option>String + filemanager (src)</option>
+						<option>Tablica elementów</option>
+						</select>
+						Walidacja? <input type="text" />
+						</p>
 					</div>
 				</div>
 				<div v-html="rawHtml">
@@ -36,7 +47,6 @@
 	import firebaseConnect from '../firebase.js'
 	import _ from 'lodash'
 	import nunjucks from 'nunjucks'
-	import { required, numeric, maxLength } from 'vuelidate/lib/validators'
 	export default {
 		name: 'widget-editor',
 		data() {
@@ -44,20 +54,12 @@
 				placeholder: "My amazing widget",
 				name: "",
 				template: "",
+				styles: "",
 				vars: [],
 				data: {},
 				loops: [],
 				rawHtml: ''
 			}
-		},
-		validations: {
-			name: {
-		      	required
-		    },
-		    template: {
-		      	required
-		    },
-		    validationGroup: ['name','template']
 		},
 		computed: {
 			
@@ -70,12 +72,25 @@
 		},
 		methods: {
 			validateTemplate() {
-				this.loops = this.template.match(/{%[^{}]*%}/g)
-				let find = this.template.match(/{{\s*[\w\.]+\s*}}/g)
-				this.vars =  _.uniq(find);
-			},
-			compileName(name) {
-				return name.replace('{{','').replace('}}','')
+				let variables = this.template.match(/{{\s*[\w\.]+\s*}}/g)
+				let loops = this.template.match(/{% for [^{}]*%}/g)
+				if (variables != null) {
+					_.uniq(variables).forEach((item) => {
+						this.vars.push({
+							items: null,
+							data: item.replace('{{','').replace('}}','').replace(/ /g,'')
+						})
+					})
+				}
+				
+				if (loops != null) {
+					loops.forEach((item) => {
+						this.vars.push({
+							items: item.split("in")[0].replace("{% for ", ""),
+							data: item.split("in")[1].replace("%}", "")
+						})
+					})
+				}
 			},
 			compile() {
 				this.rawHtml = nunjucks.renderString(this.template, this.data);

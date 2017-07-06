@@ -3,11 +3,18 @@ import VueRouter from 'vue-router'
 
 // routing
 import index from './views/v-index.vue'
+import addWidget from './views/v-add-widget.vue'
+import addPage from './views/v-add-page.vue'
+
+// store
+import store from './store/store.js'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
 	routes: [
-		{ path: '/', component: index }
+		{ path: '/', component: index },
+		{ path: '/widget-add', component: addWidget },
+		{ path: '/page-add', component: addPage }
 	]
 }) 
 
@@ -15,4 +22,4 @@ const router = new VueRouter({
 import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate) 
 
-var vm = new Vue({router}).$mount('#app') 
+var vm = new Vue({store,router}).$mount('#app') 
