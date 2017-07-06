@@ -4,7 +4,6 @@
 		min-height: 100px;
 		margin: 0 auto;
 		clear: both;
-		max-width: 1350px;
 		@include breakpoint(desktop) {
 			padding: 20px 40px 80px;
 		}

@@ -11,23 +11,6 @@
 					test
 					</textarea>
 				</div>
-				<div>
-					<div v-for="(varName, index) in vars">
-						<p>{{varName.data}} {{varName.items}} 
-						Ustawienia pola <br>
-						Typ pola <select>
-						<option>String</option>
-						<option>Number</option>
-						<option>String + filemanager (src)</option>
-						<option>Tablica elementów</option>
-						</select>
-						Walidacja? <input type="text" />
-						</p>
-					</div>
-				</div>
-				<div v-html="rawHtml">
-					
-				</div>
 				<div class="a-form_row a-form_btn">
 					<button type="submit" class="a-btn is-primary"
 					>Save <span v-if="saving">...</span></button>	
@@ -39,6 +22,22 @@
 					</router-link>
 				</div>
 			</form>
+		</div>
+		<div class="c-editor_fields">
+			<div v-for="(varName, index) in vars">
+				<p>Ustawienia pola: {{varName.data}} ({{varName.items}} )</p>
+				<label>Nazwa wyświetlana: <input type="text"></label>
+				Typ pola <select>
+				<option>String</option>
+				<option>Number</option>
+				<option>Filemanager (img)</option>
+				<option>Tablica elementów</option>
+				</select>
+				</p>
+			</div>
+			<div v-html="rawHtml">
+					
+			</div>
 		</div>
 	</div>
 </template>
@@ -72,6 +71,7 @@
 		},
 		methods: {
 			validateTemplate() {
+				this.vars = [];
 				let variables = this.template.match(/{{\s*[\w\.]+\s*}}/g)
 				let loops = this.template.match(/{% for [^{}]*%}/g)
 				if (variables != null) {

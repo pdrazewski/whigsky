@@ -1,7 +1,7 @@
 <template>
 	<viewBase class="v-index">
 		<template slot>
-			dodaj widget
+			<widgetEditor></widgetEditor>
 		</template>
 	</viewBase>
 </template>

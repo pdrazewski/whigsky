@@ -1,9 +1,10 @@
 .c-editor {
 	background: $cl-white;
-	clear: both;
-	overflow: hidden;
 	margin-top: 10px;
-	@include breakpoint(phone_big) {
-		width: 40%;
-	} 
+	width: 60%;
+	float: left;
+	&_fields {
+		float: right;
+		width: 38%;
+	}
 }
