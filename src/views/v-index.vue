@@ -1,19 +1,19 @@
 <template>
 	<viewBase class="v-index">
 		<template slot>
-			<visualEditor></visualEditor>
+			<widgetEditor></widgetEditor>
 		</template>
 	</viewBase>
 </template>
 
 <script>
 	import viewBase from './v-base.vue'
-	import visualEditor from '../components/visualEditor.vue'
+	import widgetEditor from '../components/widgetEditor.vue'
 	export default {
 		name: 'view-index',
 		components: {
 			viewBase,
-			visualEditor
+			widgetEditor
 		}
 	}
 </script>
