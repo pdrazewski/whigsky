@@ -11,7 +11,7 @@ const app = Firebase.initializeApp(configFire)
 
 const helpers = {
 	fetchDB: function(obj, data, callback) {
-		var ref = app.database().ref('rects')
+		var ref = app.database().ref('db')
 		ref.once('value', function(snapshot) {
 			let db = snapshot.val()
 			data[obj] = db
