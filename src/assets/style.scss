@@ -25,19 +25,13 @@ body {
 		box-sizing: border-box;
 		border: 1px solid #ddd;
 	}
-	.color-picker-control {
-		box-shadow: none;
-	}
 }
-
-
 
 //atoms
 @import './atoms/_alert';
 @import './atoms/_form';
 @import './atoms/_btn';
 @import './atoms/_typo'; 
-@import './atoms/_loader'; 
 
 //blocks
 @import "./blocks/_mainWrapper";
@@ -46,11 +40,3 @@ body {
 //componenets
 @import "./components/_logo";
 @import "./components/_menu";
-@import "./components/_sort";
-@import "./components/_gallery";
-@import "./components/_ruler";
-@import "./components/_editor";
-@import "./components/_scene";
-
-//plugins
-@import "~codemirror/lib/codemirror.css"; 
