@@ -11,12 +11,13 @@
 					<template v-else>
 						<li class="m-menu_item"><p>Welcome {{logged}}</p></li>
 						<li class="m-menu_item">
-							<router-link  :to="'widget-add'">
+							<router-link  :to="/widget-add/ + newKey">
 						 		Add widget +
 						 	</router-link>
+
 					 	</li>
 					 	<li class="m-menu_item">
-					 		<router-link  :to="'page-add'">
+					 		<router-link  :to="/page-add/ + newKeyPage">
 						 		Add page +
 						 	</router-link>
 						 </li>
@@ -53,6 +54,8 @@
 		data() {
 			return {
 				token: '',
+				newKey: '',
+				newKeyPage: '',
 				user: false,
 				mobileMenu: false,
 				menu: [{
@@ -69,6 +72,14 @@
 					name: 'Tags'
 				}]
 			}
+		},
+		created() {
+			this.newKey = firebase.helpers.generateKey({
+				db: 'widgets'
+			})
+			this.newKeyPage = firebase.helpers.generateKey({
+				db: 'pages'
+			})
 		},
 		computed: {
 			logged() {
@@ -90,7 +101,7 @@
 						token: token
 					}
 					this.$store.dispatch('userSetId', user.displayName)
-					firebase.appFire.database().ref('users/' + user.uid).set(userData)
+					firebase.app.database().ref('users/' + user.uid).set(userData)
 					console.log(result)
 				}.bind(this)).catch(function(error) {
 					var errorCode = error.code

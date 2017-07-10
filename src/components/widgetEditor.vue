@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div v-if="logged">
 		<div class="c-editor">
 			<form class="a-form" @submit.prevent="compile">
 				<div class="a-form_row">
@@ -7,7 +7,7 @@
 					<textarea v-model="template" class="a-form_field" type="text" @input="validateTemplate();" style="height: 500px; line-height: 20px;">
 					test
 					</textarea>
-					<textarea v-model="styles" class="a-form_field" type="text" @input="compileSCSS();" style="height: 500px; line-height: 20px;">
+					<textarea v-model="styles" class="a-form_field" type="text" style="height: 500px; line-height: 20px;">
 					test
 					</textarea>
 				</div>
@@ -24,6 +24,8 @@
 			</form>
 		</div>
 		<div class="c-editor_fields">
+			Nazwa widgetu
+			<input type="text" v-model="name" /> <br><br>
 			<div v-for="(varName, index) in vars">
 				<p>Ustawienia pola: {{varName.data}} ({{varName.items}} )</p>
 				<label>Nazwa wyświetlana: <input type="text"></label>
@@ -43,7 +45,7 @@
 </template>
 
 <script>
-	import firebaseConnect from '../firebase.js'
+	import firebase from '../firebase.js'
 	import _ from 'lodash'
 	import nunjucks from 'nunjucks'
 	export default {
@@ -52,19 +54,23 @@
 			return {
 				placeholder: "My amazing widget",
 				name: "",
+				key: "",
 				template: "",
 				styles: "",
 				vars: [],
 				data: {},
+				saved: '',
 				loops: [],
 				rawHtml: ''
 			}
 		},
 		computed: {
-			
+			logged() {
+				return this.$store.state.user.id
+			}
 		},
 		mounted() {
-
+			this.key = this.$route.params.id
 		},
 		destroyed() {
 			
@@ -94,6 +100,19 @@
 			},
 			compile() {
 				this.rawHtml = nunjucks.renderString(this.template, this.data);
+				let data = {
+					db: 'widgets',
+					key: this.key,
+					data: {
+						author: this.$store.state.user.id,
+						template: this.template,
+						style: this.styles,
+						name: this.name,
+						key: this.key,
+						vars: this.vars
+					}
+				}
+				firebase.helpers.push(data, "saved", this)
 			}
 		}
 	}

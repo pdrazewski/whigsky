@@ -10,24 +10,20 @@ const configFire = {
 const app = Firebase.initializeApp(configFire)
 
 const helpers = {
-	fetchDB: function(obj, data, callback) {
-		var ref = app.database().ref('rects')
+	fetchDB: function(obj, data) {
+		var ref = app.database().ref('db')
 		ref.once('value', function(snapshot) {
 			let db = snapshot.val()
-			data[obj] = db
-			if (typeof callback === "function") {
-				callback()
-			}
+			data[obj] = db[obj]
 		}, function (errorObject) {
-			data[obj] = 'The read failed: ' + errorObject.code;
 			console.log('The read failed: ' + errorObject.code)
 		})
 	},
 	removeKey: function(db, key) {
-		app.database().ref('rects').child(key).remove()
+		app.database().ref('db').child(key).remove()
 	},
 	returnKeyInformation: function(db, key, data, callback) {
-		var ref = app.database().ref('rects/' + db)
+		var ref = app.database().ref('db/' + db)
 		ref.once('value', function(snapshot) {
 			let snap = snapshot.val()
 			data[key] = snap[key]
@@ -39,19 +35,19 @@ const helpers = {
 		})
 	},
 	generateKey: function() {
-		return app.database().ref('rects').push().key
+		return app.database().ref('db').push().key
 	},
-	push: function(setup, key, data, callback) {
+	push: function(setup, key, data) {
 		var updates = {}
-		updates['/' + setup.key] = setup.data
-		return app.database().ref('rects').update(updates, function(error) {
+		updates['/' + setup.db + '/' + setup.key] = setup.data
+		if (setup.clone) {
+			app.database().ref('db').child(setup.clone.db).push(setup.clone.data)
+		}
+		return app.database().ref('db').update(updates, function(error) {
 			if (error) {
-				data[key] = error
+				data[key] = 'saving...with error'
 			} else {
-				data[key] = 'Saved successfully'
-				if (typeof callback === "function") {
-					callback()
-				}
+				data[key] = 'saving...with success'
 			}
 		})
 	},

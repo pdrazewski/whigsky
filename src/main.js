@@ -13,8 +13,8 @@ Vue.use(VueRouter)
 const router = new VueRouter({
 	routes: [
 		{ path: '/', component: index },
-		{ path: '/widget-add', component: addWidget },
-		{ path: '/page-add', component: addPage }
+		{ path: '/widget-add/:id', component: addWidget },
+		{ path: '/page-add/:id', component: addPage }
 	]
 }) 
 
