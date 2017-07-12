@@ -1,15 +1,88 @@
 <template>
-	<div v-if="logged">
-		<div class="c-editor">
+	<div >
+		<div>
 			<form class="a-form" @submit.prevent="compile">
-				<div class="a-form_row">
-					<label class="a-form_label">Template:</label>
-					<textarea v-model="template" class="a-form_field" type="text" @input="validateTemplate();" style="height: 500px; line-height: 20px;">
-					test
-					</textarea>
-					<textarea v-model="styles" class="a-form_field" type="text" style="height: 500px; line-height: 20px;">
-					test
-					</textarea>
+				<div class="c-accordion clearfix">
+					<div class="c-accordion_item">
+						<input type="radio" id="static-tab-1" name="static-items" checked="checked">
+						<label for="static-tab-1">Dane podstawowe</label>
+						<div class="c-accordion_content">
+							<div class="c-accordion_contentRaw">
+							   	Nazwa: Accordion <br>
+								Autor: pd<br>
+								Typ: default|mail|allegro|lp<br>
+								Kategoria: default|oferta|<br>
+								Publiczny/prywatny: ok<br>
+								Opis: this is sparta<br>
+								Miniaturka: this is mini turkey<br>
+								Srodowisko: Samsung|Core <br>
+							</div> 	
+						</div>
+					</div>
+					<div class="c-accordion_item">
+						<input type="radio" id="static-tab-2" name="static-items">
+						<label for="static-tab-2">Szablon (template)</label>
+						<div class="c-accordion_content">
+							<div class="c-accordion_contentRaw">
+							   	
+								<textarea v-model="template" class="a-form_field" type="text" @input="validateTemplate();" style="height: 500px; line-height: 20px;">
+								test
+								</textarea>
+								<div v-for="(varName, index) in vars">
+				<p>Ustawienia pola: {{varName.data}} ({{varName.items}} )</p>
+				<label>Nazwa wyświetlana: <input type="text"></label>
+				Typ pola <select>
+				<option>String</option>
+				<option>Number</option>
+				<option>Filemanager (img)</option>
+				<option>Tablica elementów</option>
+				</select>
+				</p>
+			</div>
+							</div> 	
+						</div>
+					</div>
+					<div class="c-accordion_item">
+						<input type="radio" id="static-tab-3" name="static-items" >
+						<label for="static-tab-3">Style (scss)</label>
+						<div class="c-accordion_content">
+							<div class="c-accordion_contentRaw">
+								<textarea v-model="styles" class="a-form_field" type="text" style="height: 500px; line-height: 20px;">
+								test
+								</textarea>
+							</div> 	
+						</div>
+					</div>
+					<div class="c-accordion_item">
+						<input type="radio" id="static-tab-4" name="static-items">
+						<label for="static-tab-4">Javascript</label>
+						<div class="c-accordion_content">
+							<div class="c-accordion_contentRaw">
+								Dodaj bibiloteki (head, stopka)
+								<textarea v-model="styles" class="a-form_field" type="text" style="height: 500px; line-height: 20px;">
+								test
+								</textarea>
+							</div> 	
+						</div>
+					</div>
+					<div class="c-accordion_item">
+						<input type="radio" id="static-tab-5" name="static-items">
+						<label for="static-tab-5">Podgląd konfiguracji (testowe dane)</label>
+						<div class="c-accordion_content">
+							<div class="c-accordion_contentRaw">
+								<div v-html="rawHtml"></div>
+							</div> 	
+						</div>
+					</div>
+					<div class="c-accordion_item">
+						<input type="radio" id="static-tab-6" name="static-items">
+						<label for="static-tab-6">Podgląd</label>
+						<div class="c-accordion_content">
+							<div class="c-accordion_contentRaw">
+								<div v-html="rawHtml"></div>
+							</div> 	
+						</div>
+					</div>
 				</div>
 				<div class="a-form_row a-form_btn">
 					<button type="submit" class="a-btn is-primary"
@@ -22,24 +95,6 @@
 					</router-link>
 				</div>
 			</form>
-		</div>
-		<div class="c-editor_fields">
-			Nazwa widgetu
-			<input type="text" v-model="name" /> <br><br>
-			<div v-for="(varName, index) in vars">
-				<p>Ustawienia pola: {{varName.data}} ({{varName.items}} )</p>
-				<label>Nazwa wyświetlana: <input type="text"></label>
-				Typ pola <select>
-				<option>String</option>
-				<option>Number</option>
-				<option>Filemanager (img)</option>
-				<option>Tablica elementów</option>
-				</select>
-				</p>
-			</div>
-			<div v-html="rawHtml">
-					
-			</div>
 		</div>
 	</div>
 </template>
@@ -61,7 +116,20 @@
 				data: {},
 				saved: '',
 				loops: [],
-				rawHtml: ''
+				rawHtml: '',
+				tabs: [{
+					name: "Dane podstawowe",
+					content: this.placeholder
+				},{
+					name: "Szablon (template)",
+					content: "AAAAA BBB CCC"
+				},{
+					name: "Style (css)",
+					content: "AAAAA BBB CCC"
+				},{
+					name: "Javascript",
+					content: "AAAAA BBB CCC"
+				}]
 			}
 		},
 		computed: {
