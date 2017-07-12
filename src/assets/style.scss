@@ -40,3 +40,120 @@ body {
 //componenets
 @import "./components/_logo";
 @import "./components/_menu";
+
+.c-accordion {
+	margin: 10px;
+	line-height: 22px;
+	font-size: 0;
+	overflow: hidden;
+	background: $cl-white;
+	@include breakpoint(768px) {
+		padding: 20px;
+		margin: 0;
+		border: 1px solid #ddd;
+	}
+	* {
+		padding: 0;
+		margin: 0;
+	}
+	&_item {
+		font-size: 14px;
+		display: block;
+		clear: both;
+		overflow: hidden;
+		@include breakpoint(768px) {
+			display: inline;
+			clear: none;
+			overflow: visible;
+		}
+		// fix for android2.3
+		@media screen and (min-width:0\0) {
+			&.checked label {
+				background: none;
+				cursor: default;
+			}
+			&.checked .c-accordion_content {
+				display: inline;
+				padding-right: 4px;
+			}
+			&.checked .c-accordion_content .c-accordion_contentRaw {
+				float: left;
+				padding: 0 20px 20px 20px;
+				@include breakpoint(768px) {
+					padding-top: 20px;
+				}
+			}
+		}
+		input {
+			clip: rect(0 0 0 0);
+			height: 1px;
+			opacity: 0;
+			position: fixed;
+			width: 1px;
+			z-index: -1;
+			&:checked ~ label {
+				background: none;
+				cursor: default;
+			}
+			&:checked ~ .c-accordion_content {
+				display: inline;
+				padding-right: 4px;
+			}
+			&:checked ~ .c-accordion_content .c-accordion_contentRaw {
+				float: left;
+				padding: 0 20px 20px 20px;
+				@include breakpoint(768px) {
+					padding-top: 20px;
+				}
+			}
+			
+		}
+		label {
+			background: $cl-greyD;
+			padding: 10px 20px; 
+			display: block;
+			margin-bottom: 1px;
+			position: relative;
+			cursor: pointer;
+			//IE9&IE10 adjustmetns
+			@media screen and (min-width:0\0) {
+    			margin-left: -5px;
+    			left: 6px;
+			}
+			@include breakpoint(768px) {
+				display: inline-block;
+				padding-left: 15px; 
+				padding-right: 15px; 
+				margin-left: -6px;
+				left: 6px;
+			}
+			@include breakpoint(960px) {
+				padding-left: 20px; 
+				padding-right: 20px; 
+			}
+			&:hover {
+				background: $cl-greyC;
+			}
+		}
+	}
+	&_content {
+		height: 0;
+		overflow: hidden;
+		position: relative;
+		width: 0;
+		@include breakpoint(768px) {
+			display: inline-block;
+		}
+	}
+	&_contentRaw {
+		display: block;
+		width: 100%;
+		box-sizing: border-box;
+		@media screen and (min-width:0\0) {
+			width: 85%;
+		}
+		h2 {
+			padding: 5px 0 20px;
+		}
+	}
+}

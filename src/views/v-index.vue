@@ -1,6 +1,7 @@
 <template>
 	<viewBase class="v-index">
 		<template slot>
+			<tabs :items="tabs"></tabs>
 			Ostatnio dodane widgety <br>
 			<div v-for="(widget, index) in widgets">
 				<span>{{widget.name}}</span>
@@ -22,15 +23,33 @@
 <script>
 	import viewBase from './v-base.vue'
 	import firebase from '../firebase.js'
+	import tabs from '../components/tabs.vue'
 	export default {
 		name: 'view-index',
 		components: {
-			viewBase
+			viewBase,
+			tabs
 		},
 		data() {
 			return {
 				widgets: {},
-				pages: {}
+				pages: {},
+				tabs: [{
+					name: "Dane podstawowe",
+					content: "AAAAA"
+				},{
+					name: "Szablon (template)",
+					content: "AAAAA BBB CCC"
+				},{
+					name: "Style (css)",
+					content: "AAAAA BBB CCC"
+				},{
+					name: "Javascript",
+					content: "AAAAA BBB CCC"
+				},{
+					name: "Pola do edycji",
+					content: "AAAAA BBB CCC"
+				}]
 			}
 		},
 		computed: {

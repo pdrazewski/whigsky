@@ -12,13 +12,13 @@
 						<li class="m-menu_item"><p>Welcome {{logged}}</p></li>
 						<li class="m-menu_item">
 							<router-link  :to="/widget-add/ + newKey">
-						 		Add widget +
+						 		Add widget
 						 	</router-link>
 
 					 	</li>
 					 	<li class="m-menu_item">
 					 		<router-link  :to="/page-add/ + newKeyPage">
-						 		Add page +
+						 		Add page
 						 	</router-link>
 						 </li>
 						<li class="m-menu_item"><a href="#" class="is-secondary" v-on:click.prevent="signOut">Logout</a></li>
